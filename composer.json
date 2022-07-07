@@ -1,0 +1,17 @@
+{
+    "name": "loureirobruno/buscador-cursos",
+    "description": "Biblioteca que busca os cursos no site da alura\"",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Loureirobruno\\BuscadorCursos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "LoureiroBruno",
+            "email": "brunoloureiro9@yahoo.com.br"
+        }
+    ],
+    "require": {}
+}
