@@ -13,5 +13,8 @@
             "email": "brunoloureiro9@yahoo.com.br"
         }
     ],
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^7.4",
+        "symfony/dom-crawler": "^5.4"
+    }
 }

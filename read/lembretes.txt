@@ -1,21 +1,41 @@
+================================================================================================================================================================================
+mod 01
+
+# Composer é um gerenciador de dependências PHP.
+# Ele guarda as dependências dentro do projeto.
+# Se quisermos uma dependência global, devemos usar o global command.
+# Um pacote sempre segue a nomenclatura: <vendor>/<name>.
+# As meta-informações de uma dependência ficam salvas no arquivo composer.json.
+# O comando composer init inicializa o composer.json.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
 ## instalando o composer no mac e linux com os comandos especificados na pagina oficial.
 ## após a instalação para verificar a versão, comando: composer --version
--------------------------------------------------------------------------------------------------------------------------------------------
-## composer é um gerênciador de dependências, que precisar ser instalado na maquina.porém o gerenciamento é por
-projeto. iniciando dentro da pasta raiz do projeto. 
-## para iniciar o composer no projeto pode ser criado um arquivo no formato composer.json na pasta raiz do projeto.
-ou iniciar com o comando composer init também dentro da pasta raiz do projeto.
+## composer é um gerênciador de dependências, que precisar ser instalado na maquina.porém o gerenciamento é por projeto. iniciando dentro da pasta raiz do projeto. 
+## para iniciar o composer no projeto pode ser criado um arquivo no formato composer.json na pasta raiz do projeto. ou iniciar com o comando composer init também dentro da pasta raiz do projeto.
 
-* Após isso, iniciado boas vindas ao gerador de configurações do Composer, que nos pedirá o nome de um pacote. 
-Os nomes dos pacotes do Composer normalmente são dados da forma <vendor>/<name>, onde vendor é quem está distribuindo 
-esse pacote (como um nickname, um nome de usuário do github ou o nome da empresa) e name é o nome do pacote que está sendo criado.
-exemplo: loureirobruno/buscador-cursos
-* será solicitação a informar a descrição do pacote
-* será solicitado a informar o autor
+* Após isso, iniciado boas vindas ao gerador de configurações do Composer, que nos pedirá o nome de um pacote. Os nomes dos pacotes do Composer normalmente são 
+    dados da forma <vendor>/<name>, onde vendor é quem está distribuindo  esse pacote (como um nickname, um nome de usuário do github ou o nome da empresa) e name é o nome do pacote que está sendo criado.
+    exemplo: loureirobruno/buscador-cursos
+* será solicitado a informar o Package (autor/empresa)
+* será solicitação a informar a Description (descrição do pacote)
 * será solicitado a informar Minimum Stability (em que fase esta o pacote)
 * será solicitado a informar Package Type ( o tipo de pacote)
 * será solicitado a informar Licence
 * será solicitado a informar dependências
 * ... git ignore, src
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+================================================================================================================================================================================
+mod 02
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+## o composer como seu repositorio principal do pacotes o https://packagist.org/.
+## são os pacotes públicos instalavés com o composer.
+## com o uso do comando composer install instala todas as dependências contidas no arquivo json
+## com o uso do comando composer update, atualiza todas as dependências contidas no arquivo json
+-------------------------------------------------------------------------------------------------------------------------------------------
+
 
