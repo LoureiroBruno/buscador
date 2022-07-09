@@ -3,6 +3,13 @@
     "description": "Biblioteca que busca os cursos no site da alura\"",
     "type": "library",
     "autoload": {
+        "files": [
+            "./funcoes.php"
+        ],
+        "classmap": [
+            "./src/ClasseLegada.php",
+            "./ClasseLegada_.php"
+        ],
         "psr-4": {
             "LoureiroBruno\\BuscadorDeCursos\\": "src/"
         }
@@ -17,5 +24,8 @@
         "guzzlehttp/guzzle": "^7.4",
         "symfony/dom-crawler": "^6.1",
         "symfony/css-selector": "^6.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8"
     }
 }

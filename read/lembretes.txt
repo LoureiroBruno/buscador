@@ -48,6 +48,7 @@ mod 02
 ## com o uso do comando composer update, atualiza todas as dependências contidas no arquivo json
 -------------------------------------------------------------------------------------------------------------------------------------------
 
+================================================================================================================================================================================
 mod 03
 
 # Conhecemos a PSR-4 (Autoloader)
@@ -78,5 +79,152 @@ e para que a logica funcione,
 1 mesmo nome registrado no composer.json autload{} igual ao namespace da classe
 2 a classe deve estar contida no diretorio (src)
 3 o nome do arquivo de ter o mesmo nome da classe
+4 e conter o namespace registrado
+
+## OBSERVAÇÃO - para relançar as dependências do autoload comando : composer dump-autoload
+
+## ao ultilizar projetos legados onde o código que não foi implementado o padrão da psr4, pode aplicar no composer class map mapeamento de classes
+e para que a logica funcione, 
+1 que não possue o namespace
+2 localize o diretorio do arquivo atual
+3 padrao formato de pascal case para melhor identificação
+
+ "classmap": [
+            "./ClasseLegada.php"
+        ],
+
+* usos de mais de uma classe e uso de outro diretorio da classe
+
+"classmap": [
+            "./src/ClasseLegada.php",
+            "./ClasseLegada_.php"
+        ],
+
+## ao ultilizar projetos legados onde o código que não foi implementado o padrão da psr4, pode aplicar no composer mapaemnto de arquivo de funções. 
+
+* sempre será incluido atraves do uso do require_once do vendor/autoload do composer, porém fica a critério de chamar ou não. 
+pode criatr uma função com varias funções dentro dela. ou ter inserido varias funções unicas.
+
+"autoload": {
+        "files": [
+            "./funcoes.php"
+        ],
+        "classmap": [
+            "./src/ClasseLegada.php",
+            "./ClasseLegada_.php"
+        ],
+        "psr-4": {
+            "LoureiroBruno\\BuscadorDeCursos\\": "src/"
+        }
+    },
+
 -------------------------------------------------------------------------------------------------------------------------------------------
 
+================================================================================================================================================================================
+mod 04
+
+# Através do flag --dev definimos que uma dependência não faz parte do ambiente de produção
+# Caso desejarmos baixar as dependências de "produção" apenas podemos usar o flag no-dev
+# Arquivos executáveis fornecidos por componentes instalados pelo composer ficam na pasta vendor/bin
+# Conhecemos três ferramentas do mundo PHP:
+* phpunit para rodar testes;
+* phpcs para verificar padrões de código;
+* phan para executar uma análise estática da sintaxe do nosso código.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+## instalar pacotes, componentes ou outro tipos de ferramentas, que seja instalados apenas no ambiente de desenvilvimento.
+como por exemplo o php unit. ao baixar com o composer, usando no commando: composer require --dev phpunit/phpunit ^8.
+será criado dentro da arvore
+
+"require-dev": {
+        "phpunit/phpunit": "^8"
+    }
+
+require-dev representa que, uma vez executado composer install acrescido --no-dev , ficando composer install --no-dev.
+será instalado todas as dependências com a exceção das dependências contidas no require-dev
+
+## ./vendor/bin/phpunit --version => verificar a versão instalada no projeto
+## Onde ficam os arquivos executáveis que o Composer traz com os pacotes - Na pasta bin dentro da pasta vendor
+## modo de uso de mais algunas ferramentas que ajudam no desenvolviento php_codesniffer, embora tenha opção de instalar no composer
+o editor de vs code pois extensões do tipo php_codesniffer, que fazem a mesma tarfefa de forma mais pratica numa verificação automatica
+sobre a formatação da indentação do código de accordo com a psr atualizada (PHP Intelephense).
+## exite outra ferramenta phan php que analisa se algum variavel é inexistente disponivel com o composer. o editor de vs code também
+disponibiliza o extnsão da ferramenta php phan anlise. Com o uso do debbug informa os erros das variaveis incorretas.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+================================================================================================================================================================================
+mod 05
+
+# scripts são definidos dentro do composer.json;
+# scripts podem definir comandos que chamam ferramentas instaladas pelo Composer;
+# scripts podem chamar comandos do sistema operacional;
+# scripts podem chamar códigos PHP;
+# scripts podem ser associados ao evento.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+## com o uso dos scripts dentro do arquivo composer json, poderá fazer verificações do código de mameira de facilizar os demais processos 
+de testes do código. executando scripts das ferramentas citadas acima, mesmo q a ide faça a correção duarante a codificação como por exemplo.
+exemplo:
+
+"scripts": {
+    "test": "phpunit tests\\TestBuscadorDeCursos",
+    "cs": "phpcs --standard=PSR12 src/"
+}
+
+está sendo executando via comando como o apelido de test a verificação de teste unitado no arquivo TestBuscadorDeCursos dentro da pasta tests
+de forma que execute o comando: "composer test" á mesma forma com o comando "composer cs" para verificar se o arquivo está dentro do padrão psr-12
+
+## agora ao invés de executar dentro a pasta raiz do projeto os coamdos um por um do tipo, "test", "cs" etc.
+poderá criar um unico script que excutará de forma automatica todos dentro da lista do composer json
+com o uso do pipeline de deploy
+-- Possibilidade de configurarmos um processo de build com um único comando
+
+"scripts": {
+    "test": "phpunit tests\\TestBuscadorDeCursos.php",
+    "cs": "phpcs --standard=PSR12 src/",
+    "phan": "phan --allow-polyfill-parser",
+    "check": [
+        "@phan",
+        "@cs",
+        "@test"
+    ]
+}
+
+é fazer referência aos scrips já existentes. Para isso, basta adicionarmos um @ na frente de cada script na lista:
+
+## ao pegarmos um projeto já existente do Composer, podemos rodar composer list
+## descrições personalizadas para nossos scripts.
+
+"scripts-descriptions": {
+    "check": "Roda as verificações do código. PHAN, PHPCS e PHPUNIT"
+}
+
+incluido na descrição na lista, no tipo check com a descrição citada a cima.
+
+## qualquer comando do sistema operacional pode ser executado por meio dos scripts
+
+"scripts": {
+    "test": "phpunit tests\\TestBuscadorDeCursos.php",
+    "cs": "phpcs --standard=PSR12 src/",
+    "phan": "phan --allow-polyfill-parser",
+    "ls": "dir",
+    "check": [
+        "@phan",
+        "@cs",
+        "@test"
+    ]
+},
+
+ao executar "compose ls" será executado "dir" comando listar diretorios no ambinte do windows
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+================================================================================================================================================================================
+mod 06
+
+# 
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+## 
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+================================================================================================================================================================================
