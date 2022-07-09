@@ -215,7 +215,30 @@ incluido na descrição na lista, no tipo check com a descrição citada a cima.
     ]
 },
 
-ao executar "compose ls" será executado "dir" comando listar diretorios no ambinte do windows
+* ao executar "compose ls" será executado "dir" comando listar diretorios no ambinte do windows
+## criando eventos no composer. por exemplo toda vez que executar composer update, executar um eveto que chama o script @test
+## no caso existem varios tipode de eventos no composer. https://getcomposer.org/doc/articles/scripts.md
+## será criado um evento como citado acima. exemplificando:
+"scripts": {
+    "test": "phpunit tests\\TestBuscadorDeCursos.php",
+    "cs": "phpcs --standard=PSR12 src/",
+    "phan": "phan --allow-polyfill-parser",
+    "ls": "dir",
+    "limpa-cache": "del cache",
+    "check": [
+        "@phan",
+        "@cs",
+        "@test"
+    ],
+    "post-update-cmd": [ 
+        "@test"
+    ]
+},
+
+* após buscar as atualizações das dependências, o Composer rodará automaticamente o PHPUnit (post-update-cmd - @test)
+* Em algumas situações isso pode ser muito útil. Podemos ter um servidor de integração contínua - de forma resumida, um servidor que fica rodando para executar nossas tarefas de build/deploy, 
+verificando se nosso código está pronto para a produção. Nesse caso, ao mandarmos nosso código para esse servidor, tudo que teremos que colocar na configuração é a execução de um script definido no Composer.
+* composer tem de automatizar tarefas por meio de eventos, scripts, composições, entre outras possibilidades
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 ================================================================================================================================================================================
