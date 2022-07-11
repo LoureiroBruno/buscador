@@ -265,14 +265,14 @@ mod 06
 * Ele define que o primeiro número é a versão princial ("MAJOR version" ou "versão maior"), que indica quebra de compatibilidade.
 * Se adicionarmos alguma compatibilidade sem quebrar nada, utilizamos o segundo número, referente à "MINOR version" (ou "versão menor").
 * o terceiro e último número, conhecido como "PATCH version" ("versão de correção"). Já quando temos mudanças menores ou correções de bugs
-## criar uma versão do pacote no git,comando git tag -a v1.0.0
+## criar uma versão do pacote no git,comando git tag -a v0.0.0
 ## publicar no repositório Packagist buscará o componente
 ## É hora de publicarmos o nosso pacote. Para isso, precisaremos de uma conta no GitHub. Se você ainda não tiver uma, basta acessar o site e criá-la. Feito isso
 ## iremos criar um repositório para o qual enviaremos o nosso código, e é nesse repositório onde o Packagist buscará o componente
 **  Com o repositório criado
 ** add o servidor
 ** enviador ao servidor
-** enviado ao servidor a tag
+** enviado ao servidor a tag "v0.0.0"
 ** https://packagist.org e faremos login utilizando nossa própria conta do GitHub
 ** "Submit" e adicionaremos a URL do GitHub do nosso projeto, clicando em "Check" logo em seguida.
 
