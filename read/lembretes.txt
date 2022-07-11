@@ -147,7 +147,8 @@ será instalado todas as dependências com a exceção das dependências contida
 ## Onde ficam os arquivos executáveis que o Composer traz com os pacotes - Na pasta bin dentro da pasta vendor
 ## modo de uso de mais algunas ferramentas que ajudam no desenvolviento php_codesniffer, embora tenha opção de instalar no composer
 o editor de vs code pois extensões do tipo php_codesniffer, que fazem a mesma tarfefa de forma mais pratica numa verificação automatica
-sobre a formatação da indentação do código de accordo com a psr atualizada (PHP Intelephense).
+sobre a formatação da indentação do código de accordo com a psr atualizada (PHP Intelephense). 
+* composer require --dev squizlabs/php_codesniffer
 ## exite outra ferramenta phan php que analisa se algum variavel é inexistente disponivel com o composer. o editor de vs code também
 disponibiliza o extnsão da ferramenta php phan anlise. Com o uso do debbug informa os erros das variaveis incorretas.
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -244,10 +245,39 @@ verificando se nosso código está pronto para a produção. Nesse caso, ao mand
 ================================================================================================================================================================================
 mod 06
 
-# 
+# O composer entende as tags de versão de um repositório Git
+# O composer segue o conceito do versionamento semântico (MAJOR.MINOR.PATCH)
+# No composer.json podemos definir constraints (mais detalhes em https://getcomposer.org/doc/articles/versions.md)
+# Para distribuir e disponibilizar o seu projeto devemos:
+# Criar um repositório no Github;
+# Usar o packgist e associar com o repositório no Github.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
-## 
+## no arquivo.gitignore na raiz do projeto, está desta forma:
+* vendor/
+## Isso porque a pasta "vendor" não pode ser commitada, já que ela é instalada pelo Composer. O arquivo .gitignore serve justamente para que o Git ignore - ou seja, não gerencie - as entradas listadas dele.
+## git add . no terminal e, 
+## em seguidda, git commit -m "Primeiro commit", onde "Primeiro commit" é uma mensagem personalizada.
+## A partir desse ponto, foi definida a primeira versão do nosso projeto. Prosseguindo, podemos chamar git tag -a v1.0.0. 
+** para mehor compreensão sobre uso das silgas de versão
+** existe um esquema de versionamento chamado SemVer, ou "Semantic Versioning".
+** https://semver.org/lang/pt-BR/
+* Ele define que o primeiro número é a versão princial ("MAJOR version" ou "versão maior"), que indica quebra de compatibilidade.
+* Se adicionarmos alguma compatibilidade sem quebrar nada, utilizamos o segundo número, referente à "MINOR version" (ou "versão menor").
+* o terceiro e último número, conhecido como "PATCH version" ("versão de correção"). Já quando temos mudanças menores ou correções de bugs
+## criar uma versão do pacote no git,comando git tag -a v1.0.0
+## publicar no repositório Packagist buscará o componente
+## É hora de publicarmos o nosso pacote. Para isso, precisaremos de uma conta no GitHub. Se você ainda não tiver uma, basta acessar o site e criá-la. Feito isso
+## iremos criar um repositório para o qual enviaremos o nosso código, e é nesse repositório onde o Packagist buscará o componente
+**  Com o repositório criado
+** add o servidor
+** enviador ao servidor
+** enviado ao servidor a tag
+** https://packagist.org e faremos login utilizando nossa própria conta do GitHub
+** "Submit" e adicionaremos a URL do GitHub do nosso projeto, clicando em "Check" logo em seguida.
+
+## baixar o componete recem criado no packagist
+## acesando a pasta raiz do projeto, comando composer require "nome_do_pacote_Criado_no_packagist"
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 ================================================================================================================================================================================
